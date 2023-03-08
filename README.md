@@ -1,3 +1,2 @@
 # NikkouServerBOT
-source
-コード
+sourcecode
