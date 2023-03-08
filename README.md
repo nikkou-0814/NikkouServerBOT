@@ -1,2 +1,2 @@
 # NikkouServerBOT
-sourcecode
+testver
