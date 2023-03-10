@@ -1,18 +1,14 @@
 import discord
 from discord import app_commands
-from typing import Optional
 import os
 import random
 import datetime
-import asyncio
-
-TOKEN = "TOKEN"
+from dotenv import load_dotenv
+load_dotenv()
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
-
-
 
 #------------------------------------------------------------------ 起動処理 ------------------------------------------------------------------
 
@@ -21,8 +17,6 @@ async def on_ready():
   print("起動OK!!!")
   await tree.sync()
   await client.change_presence(activity=discord.Game(name="BOTの説明は/help | v1.0.5"))
-
-
 
 #------------------------------------------------------------------ VC通知機能 ------------------------------------------------------------------
 
@@ -41,8 +35,6 @@ async def on_voice_state_update(member, before, after):
         if after.channel is not None and after.channel.id in announceChannelIds:
             await botRoom.send("**" + after.channel.name + "** に、__" + member.name + "__  さんが入室しました！")
 
-
-
 #------------------------------------------------------------------ ヘルプ機能------------------------------------------------------------------
 
 @tree.command(name="help",description="このBOTのコマンドなどを表示します。")
@@ -59,8 +51,6 @@ async def help_command(interaction: discord.Interaction):
   embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
-
-
 #------------------------------------------------------------------ コマンド一覧表示機能 ------------------------------------------------------------------
 
 @tree.command(name="commandlist",description="コマンド一覧を説明無しで表示する。")
@@ -75,8 +65,6 @@ async def commandlist_command(interaction: discord.Interaction):
   embed.add_field(name="/helpreport",value="",inline=False)
   embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
-
-
 
 #------------------------------------------------------------------ helpreport機能 ------------------------------------------------------------------
 
@@ -99,8 +87,6 @@ async def helpreport_command(interaction: discord.Interaction):
   embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed, ephemeral=True)
 
-
-  
 #------------------------------------------------------------------ おみくじ機能 ------------------------------------------------------------------
 
 @tree.command(name="omikuzi",description="今日の運勢は〜")
@@ -108,8 +94,6 @@ async def omikuzi_command(interaction: discord.Interaction):
   unsei = ["おめでとう！ 大吉 が出たよ！！明日はなんかいいことがあるかもね！！", "中吉！おめでとう！って言えるかはあなた次第！", "吉 が出たよ、なんとも言えないね", "小吉 が出たよ！マイナスだと思わず頑張ろう！！", "凶 だ..まぁ大凶より良いしぃ...", "大凶 が出たぞ..お前...強く生きろよ...."]
   choice = random.choice(unsei)
   await interaction.response.send_message(choice,ephemeral=True)
-
-
 
 #------------------------------------------------------------------ userreport機能 ------------------------------------------------------------------
 
@@ -141,8 +125,6 @@ async def report_command(interaction: discord.Interaction,違反者:discord.Memb
   await interaction.followup.send("送信しました!協力ありがとう!", ephemeral=True)
   embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
   await channel.send(embed=embed)
-  
-
 
 #------------------------------------------------------------------ bugreport機能 ------------------------------------------------------------------
 
@@ -175,12 +157,10 @@ async def bugreport_command(
   embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
   await channel.send(embed=embed)
 
-
-
 #------------------------------------------------------------------ welcome機能 ------------------------------------------------------------------
 
 @tree.command(name="welcome",description="welcome!")
 async def welcome_command(interaction: discord.Interaction):
   await interaction.response.send_message("> **日光サーバーへようこそ！**\n\nこのDiscordサーバーはマインクラフトサーバー '日光鯖' の公式Discordサーバーです！サーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージはすべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version 1.0.5 | made by aomona and nikkou_0814 ",ephemeral=False)
 
-client.run(TOKEN)
+client.run(os.getenv('TOKEN'))
