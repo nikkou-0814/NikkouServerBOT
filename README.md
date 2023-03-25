@@ -12,8 +12,8 @@
 ```
 linux or macOS
 python3 -m pip install discord.py
-python3 -m pip install dotenv
+python3 -m pip install python-dotenv
 windows
 python.exe -m pip install discord.py
-python.exe -m pip install dotenv
+python.exe -m pip install python-dotenv
 ```
