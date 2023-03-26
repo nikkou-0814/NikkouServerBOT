@@ -16,7 +16,7 @@ tree = app_commands.CommandTree(client)
 async def on_ready():
   print("起動OK!!!")
   await tree.sync()
-  await client.change_presence(activity=discord.Game(name="BOTの説明は/help | v1.0.5"))
+  await client.change_presence(activity=discord.Game(name="BOTの説明は/help | v1.0.6"))
 
 #------------------------------------------------------------------ VC通知機能 ------------------------------------------------------------------
 
@@ -48,7 +48,8 @@ async def help_command(interaction: discord.Interaction):
   embed.add_field(name="/userreport",value="サーバー内での迷惑行為などを報告できます。", inline=False)
   embed.add_field(name="/bugreport",value="サーバー内でのバグを報告できます。",inline=False)
   embed.add_field(name="/helpreport",value="レポートがわからないときに使ってね。")
-  embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
+  embed.add_field(name="/helpmusic",value="ミュージック機能がわからないときに使ってね。")
+  embed.set_footer(text="Version 1.0.6 | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
 #------------------------------------------------------------------ コマンド一覧表示機能 ------------------------------------------------------------------
@@ -63,7 +64,8 @@ async def commandlist_command(interaction: discord.Interaction):
   embed.add_field(name="/userreport", value="", inline=False)
   embed.add_field(name="/bugreport",value="",inline=False)
   embed.add_field(name="/helpreport",value="",inline=False)
-  embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
+  embed.add_field(name="/helpmusic",value="",inline=False)
+  embed.set_footer(text="Version 1.0.6 | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
 #------------------------------------------------------------------ helpreport機能 ------------------------------------------------------------------
@@ -84,7 +86,7 @@ async def helpreport_command(interaction: discord.Interaction):
   embed.add_field(name="本文", value="バグの内容をできるだけ詳しく説明してください。", inline=False)
   embed.add_field(name="スクリーンショット", value="スクリーンショットの画像ファイルを指定してください。ない場合ははらなくてOKです。", inline=False)
   embed.add_field(name="", value="お手数おかけいたしますが、バグや治安改善のためご協力ください。", inline=False)
-  embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
+  embed.set_footer(text="Version 1.0.6 | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed, ephemeral=True)
 
 #------------------------------------------------------------------ おみくじ機能 ------------------------------------------------------------------
@@ -123,7 +125,7 @@ async def report_command(interaction: discord.Interaction,違反者:discord.Memb
 
   # Interactionに返信する
   await interaction.followup.send("送信しました!協力ありがとう!", ephemeral=True)
-  embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
+  embed.set_footer(text="Version 1.0.6 | made by nikkou_0814 and aomona")
   await channel.send(embed=embed)
 
 #------------------------------------------------------------------ bugreport機能 ------------------------------------------------------------------
@@ -154,7 +156,7 @@ async def bugreport_command(
 
   # Interactionに返信する
   await interaction.followup.send("送信しました!協力ありがとう!", ephemeral=True)
-  embed.set_footer(text="Version 1.0.5 | made by nikkou_0814 and aomona")
+  embed.set_footer(text="Version 1.0.6 | made by nikkou_0814 and aomona")
   await channel.send(embed=embed)
 
 #------------------------------------------------------------------ welcome機能 ------------------------------------------------------------------
@@ -163,4 +165,20 @@ async def bugreport_command(
 async def welcome_command(interaction: discord.Interaction):
   await interaction.response.send_message("> **日光サーバーへようこそ！**\n\nこのDiscordサーバーはマインクラフトサーバー '日光鯖' の公式Discordサーバーです！サーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージはすべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version 1.0.5 | made by aomona and nikkou_0814 ",ephemeral=False)
 
+#------------------------------------------------------------------ helpmusic機能 ------------------------------------------------------------------
+
+@tree.command(name="helpmusic",description="ミュージック機能がわからないときに使ってね。")
+async def helpmusic_command(interaction: discord.Interaction):
+  embed=discord.Embed(title="ミュージック機能を使う方法", color=0x00ff59)
+  embed.set_author(name="NikkouServerCommunityBOT help-music", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name="ボイスチャットに参加させる", value="n!summon または n!sm", inline=True)
+  embed.add_field(name="ボイスチャットから抜けさせる", value="n!disconnect または n!dc", inline=True)
+  embed.add_field(name="現在再生中の曲の詳細を表示", value="n!np", inline=True)
+  embed.add_field(name="再生したい曲の URL または 曲名 でもOK", value="n!play または n!p", inline=True)
+  embed.add_field(name="現在再生中の曲をスキップ", value="n!skip または n!s", inline=True)
+  embed.add_field(name="現在のキューを確認", value="n!queue", inline=True)
+  embed.add_field(name="使用可能なミュージックコマンドすべて", value="n!help または n!help all")
+  embed.set_footer(text="Version 1.0.6 | musicbot by https://just-some-bots.github.io/MusicBot")
+  await interaction.response.send_message(embed=embed, ephemeral=True)
+  
 client.run(os.getenv('TOKEN'))
