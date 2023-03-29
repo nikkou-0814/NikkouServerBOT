@@ -163,7 +163,7 @@ async def bugreport_command(
 
 @tree.command(name="welcome",description="welcome!")
 async def welcome_command(interaction: discord.Interaction):
-  await interaction.response.send_message("> **日光サーバーへようこそ！**\n\nこのDiscordサーバーはマインクラフトサーバー '日光鯖' の公式Discordサーバーです！サーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージはすべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version 1.0.5 | made by aomona and nikkou_0814 ",ephemeral=False)
+  await interaction.response.send_message("> **日光サーバーへようこそ！**\n\nこのDiscordサーバーはマインクラフトサーバー '日光鯖' の公式Discordサーバーです！サーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージはすべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version 1.0.6 | made by aomona and nikkou_0814 ",ephemeral=False)
 
 #------------------------------------------------------------------ helpmusic機能 ------------------------------------------------------------------
 
