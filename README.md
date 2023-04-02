@@ -1,5 +1,8 @@
 # NikkouServerBOT
 ## 環境
+### .envの記載方法
+1. .envを開きます。
+2. TOKEN=ここにTOKENを書きます。
 ### 使用モジュール
 - discord
 - discord app_commands
