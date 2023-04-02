@@ -21,3 +21,7 @@ windows
 python.exe -m pip install discord.py
 python.exe -m pip install python-dotenv
 ```
+
+## 開発者へ
+gitmojiの使用を開始したので、できればgitmojiでのコミットをしてください。
+url:名前:https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode
