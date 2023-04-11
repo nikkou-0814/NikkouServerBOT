@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.0.8"
+VER = "1.0.9"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -51,6 +51,7 @@ async def help_command(interaction: discord.Interaction):
   embed.add_field(name="/bugreport",value="サーバー内でのバグを報告できます。",inline=False)
   embed.add_field(name="/helpreport",value="レポートがわからないときに使ってね。")
   embed.add_field(name="/helpmusic",value="ミュージック機能がわからないときに使ってね。")
+  embed.add_field(name="/saikoro",value="サイコロを振ります！")
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
@@ -67,6 +68,7 @@ async def commandlist_command(interaction: discord.Interaction):
   embed.add_field(name="/bugreport",value="",inline=False)
   embed.add_field(name="/helpreport",value="",inline=False)
   embed.add_field(name="/helpmusic",value="",inline=False)
+  embed.add_field(name="/saikoro",value="",inline=False)
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
@@ -97,7 +99,7 @@ async def helpreport_command(interaction: discord.Interaction):
 async def omikuzi_command(interaction: discord.Interaction):
   unsei = ["おめでとう！ 大吉 が出たよ！！明日はなんかいいことがあるかもね！！", "中吉！おめでとう！って言えるかはあなた次第！", "吉 が出たよ、なんとも言えないね", "小吉 が出たよ！マイナスだと思わず頑張ろう！！", "凶 だ..まぁ大凶より良いしぃ...", "大凶 が出たぞ..お前...強く生きろよ...."]
   choice = random.choice(unsei)
-  await interaction.response.send_message(choice,ephemeral=True)
+  await interaction.response.send_message(choice,ephemeral=False)
 
 #------------------------------------------------------------------ userreport機能 ------------------------------------------------------------------
 
@@ -165,7 +167,7 @@ async def bugreport_command(
 
 @tree.command(name="welcome",description="welcome!")
 async def welcome_command(interaction: discord.Interaction):
-  await interaction.response.send_message(f"> **日光サーバーへようこそ！**\n\nこのDiscordサーバーはマインクラフトサーバー '日光鯖' の公式Discordサーバーです！サーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージはすべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False)
+  await interaction.response.send_message(f"> **日光サーバーへようこそ！**\n\nこのDiscordサーバーはマインクラフトサーバー '日光鯖' の公式Discordサーバーです！サーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージは、/omikuziと/saikoro以外すべて__**みんなには表示されない**__から安心して使ってね！）/\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False)
 
 #------------------------------------------------------------------ helpmusic機能 ------------------------------------------------------------------
 
@@ -182,5 +184,13 @@ async def helpmusic_command(interaction: discord.Interaction):
   embed.add_field(name="使用可能なミュージックコマンドすべて", value="n!help または n!help all")
   embed.set_footer(text=f"version {(VER)} | musicbot by https://just-some-bots.github.io/MusicBot")
   await interaction.response.send_message(embed=embed, ephemeral=True)
+
+#------------------------------------------------------------------ サイコロ機能 ------------------------------------------------------------------
+
+@tree.command(name="saikoro",description="サイコロを振ります！")
+async def saikoro_command(interaction: discord.Interaction):
+  unsei = ["サイコロの出目は...「1」です！", "サイコロの出目は...「2」です！", "サイコロの出目は...「3」です！", "サイコロの出目は...「4」です！", "サイコロの出目は...「5」です！", "サイコロの出目は...「6」です！"]
+  choice = random.choice(unsei)
+  await interaction.response.send_message(choice,ephemeral=False)
   
 client.run(os.getenv('TOKEN'))
