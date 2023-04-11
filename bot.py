@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.1.1"
+VER = "1.1.2"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -96,9 +96,10 @@ async def helpreport_command(interaction: discord.Interaction):
 
 @tree.command(name="おみくじ",description="今日の運勢は〜")
 async def おみくじ_command(interaction: discord.Interaction):
-  unsei = ["おめでとう！ 大吉 が出たよ！！明日はなんかいいことがあるかもね！！", "中吉！おめでとう！って言えるかはあなた次第！", "吉 が出たよ、なんとも言えないね", "小吉 が出たよ！マイナスだと思わず頑張ろう！！", "凶 だ..まぁ大凶より良いしぃ...", "大凶 が出たぞ..お前...強く生きろよ...."]
+  user = interaction.user.mention
+  unsei = [f"おめでとう！ 大吉 が出たよ！！ {(user)}さん！ 明日はなんかいいことがあるかもね！！", f"中吉！おめでとう！って言えるかは {(user)}さん 次第！", f"吉 が出たよ、なんとも言えないね {(user)}さん ", f"小吉 が出たよ！ {(user)}さん！ マイナスだと思わず頑張ろう！！",f"{(user)}さん....凶 だ..まぁ大凶より良いしぃ...", f"大凶 が出たぞ.. {(user)} ...強く生きろよ...."]
   choice = random.choice(unsei)
-  await interaction.response.send_message(choice,ephemeral=False)
+  await interaction.response.send_message(f"{(choice)}",ephemeral=False)
 
 #------------------------------------------------------------------ userreport機能 ------------------------------------------------------------------
 
