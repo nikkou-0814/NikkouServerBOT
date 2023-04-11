@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.1.0"
+VER = "1.1.1"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -39,19 +39,18 @@ async def on_voice_state_update(member, before, after):
 
 #------------------------------------------------------------------ ヘルプ機能------------------------------------------------------------------
 
-@tree.command(name="help",description="このBOTのコマンドなどを表示します。")
-async def help_command(interaction: discord.Interaction):
+@tree.command(name="ヘルプ",description="このBOTのコマンドなどを表示します。")
+async def ヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="ヘルプ機能", description="このBOTのコマンドなどを表示します。", color=0xff00ff)
-  embed.set_author(name="NikkouServerCommunityBOT Help", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name="/help", value="BOTのコマンドを表示する。", inline=True)
-  embed.add_field(name="/omikuzi", value="今日の運勢は〜", inline=True)
+  embed.set_author(name="NikkouServerBOT Help", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name="/ヘルプ", value="BOTのコマンドを表示する。", inline=True)
+  embed.add_field(name="/おみくじ", value="今日の運勢は〜", inline=True)
   embed.add_field(name="/commandlist", value="コマンド一覧を説明無しで一覧表示する。", inline=False)
-  embed.add_field(name="/ping", value="BOTの応答速度を計測する。", inline=False)
   embed.add_field(name="/userreport",value="サーバー内での迷惑行為などを報告できます。", inline=False)
   embed.add_field(name="/bugreport",value="サーバー内でのバグを報告できます。",inline=False)
   embed.add_field(name="/helpreport",value="レポートがわからないときに使ってね。")
   embed.add_field(name="/helpmusic",value="ミュージック機能がわからないときに使ってね。")
-  embed.add_field(name="/saikoro",value="サイコロを振ります！")
+  embed.add_field(name="/サイコロ",value="サイコロを振ります！")
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
@@ -60,15 +59,15 @@ async def help_command(interaction: discord.Interaction):
 @tree.command(name="commandlist",description="コマンド一覧を説明無しで表示する。")
 async def commandlist_command(interaction: discord.Interaction):
   embed=discord.Embed(title="コマンド一覧", description="コマンド一覧を表示します。", color=0x00ffff)
-  embed.set_author(name="NikkouServerCommunityBOT Command List", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name="/help", value="", inline=False)
-  embed.add_field(name="/omikuzi", value="", inline=False)
+  embed.set_author(name="NikkouServerBOT Command List", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name="/ヘルプ", value="", inline=False)
+  embed.add_field(name="/おみくじ", value="", inline=False)
   embed.add_field(name="/commandlist", value="", inline=False)
   embed.add_field(name="/userreport", value="", inline=False)
   embed.add_field(name="/bugreport",value="",inline=False)
   embed.add_field(name="/helpreport",value="",inline=False)
   embed.add_field(name="/helpmusic",value="",inline=False)
-  embed.add_field(name="/saikoro",value="",inline=False)
+  embed.add_field(name="/サイコロ",value="",inline=False)
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
@@ -77,7 +76,7 @@ async def commandlist_command(interaction: discord.Interaction):
 @tree.command(name="helpreport",description="reportの仕方がわからないときに使ってね！")
 async def helpreport_command(interaction: discord.Interaction):
   embed=discord.Embed(title="レポートする方法", color=0x00ff59)
-  embed.set_author(name="NikkouServerCommunityBOT help-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT help-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="レポート対象が人の場合", value="", inline=False)
   embed.add_field(name="手順1", value="通報内容がわかるスクリーンショットを用意できるなら用意します。", inline=False)
   embed.add_field(name="手順2", value="日光サーバーのdiscord内で、/reportコマンドを使用します。", inline=False)
@@ -95,8 +94,8 @@ async def helpreport_command(interaction: discord.Interaction):
 
 #------------------------------------------------------------------ おみくじ機能 ------------------------------------------------------------------
 
-@tree.command(name="omikuzi",description="今日の運勢は〜")
-async def omikuzi_command(interaction: discord.Interaction):
+@tree.command(name="おみくじ",description="今日の運勢は〜")
+async def おみくじ_command(interaction: discord.Interaction):
   unsei = ["おめでとう！ 大吉 が出たよ！！明日はなんかいいことがあるかもね！！", "中吉！おめでとう！って言えるかはあなた次第！", "吉 が出たよ、なんとも言えないね", "小吉 が出たよ！マイナスだと思わず頑張ろう！！", "凶 だ..まぁ大凶より良いしぃ...", "大凶 が出たぞ..お前...強く生きろよ...."]
   choice = random.choice(unsei)
   await interaction.response.send_message(choice,ephemeral=False)
@@ -165,17 +164,17 @@ async def bugreport_command(
 
 #------------------------------------------------------------------ welcome機能 ------------------------------------------------------------------
 
-@tree.command(name="welcome",description="welcome!")
+@tree.command(name="ようこそ",description="Admin-Commands")
 @app_commands.checks.has_permissions(moderate_members=True)
 async def welcome_command(interaction: discord.Interaction):
-  await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージは、/omikuziと/saikoro以外すべて__**みんなには表示されない**__から安心して使ってね！）/\n\nあとはルールを守りながらご自由にどうぞ！！\n\n **Enjoy your nikkou life!**\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False)
+  await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこれをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は/helpで表示できます！（このBOTのメッセージは、/omikuziと/saikoro以外すべて__**みんなには表示されない**__から安心して使ってね！）/\n\nあとはルールを守りながらご自由にどうぞ！！\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False)
 
 #------------------------------------------------------------------ helpmusic機能 ------------------------------------------------------------------
 
 @tree.command(name="helpmusic",description="ミュージック機能がわからないときに使ってね。")
 async def helpmusic_command(interaction: discord.Interaction):
   embed=discord.Embed(title="ミュージック機能を使う方法", color=0x00ff59)
-  embed.set_author(name="NikkouServerCommunityBOT help-music", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT help-music", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="ボイスチャットに参加させる", value="n!summon または n!sm", inline=True)
   embed.add_field(name="ボイスチャットから抜けさせる", value="n!disconnect または n!dc", inline=True)
   embed.add_field(name="現在再生中の曲の詳細を表示", value="n!np", inline=True)
@@ -188,10 +187,19 @@ async def helpmusic_command(interaction: discord.Interaction):
 
 #------------------------------------------------------------------ サイコロ機能 ------------------------------------------------------------------
 
-@tree.command(name="saikoro",description="サイコロを振ります！")
-async def saikoro_command(interaction: discord.Interaction):
+@tree.command(name="サイコロ",description="サイコロを振ります！")
+async def サイコロ_command(interaction: discord.Interaction):
   unsei = ["サイコロの出目は...「1」です！", "サイコロの出目は...「2」です！", "サイコロの出目は...「3」です！", "サイコロの出目は...「4」です！", "サイコロの出目は...「5」です！", "サイコロの出目は...「6」です！"]
   choice = random.choice(unsei)
   await interaction.response.send_message(choice,ephemeral=False)
+
+#------------------------------------------------------------------ リンク集機能 ------------------------------------------------------------------
+@tree.command(name="リンク集",description="NikkouServerServiceのリンク集を表示します。")
+async def リンク集_commnad(interaction: discord.Interaction):
+  embed=discord.Embed(title="リンク集", color=0x00ff59)
+  embed.set_author(name="NikkouServerBOT リンク集", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name="Webサイト", value="https://se.nikkou.nagoya")
+  embed.add_field(name="寄付(Fantia)", value="https://fantia.jp/fanclubs/488442")
+  await interaction.response.send_message(embed=embed, ephemeral=True)
   
 client.run(os.getenv('TOKEN'))
