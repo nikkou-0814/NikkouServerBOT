@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.1.4"
+VER = "1.1.5"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -42,7 +42,7 @@ async def on_voice_state_update(member, before, after):
 @tree.command(name="ヘルプ",description="このBOTのコマンドなどを表示します。")
 async def ヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="ヘルプ機能", description="このBOTのコマンドなどを表示します。", color=0xff00ff)
-  embed.set_author(name="NikkouServerBOT Help", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT ヘルプ", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="/ヘルプ", value="BOTのコマンドを表示する。", inline=True)
   embed.add_field(name="/おみくじ", value="今日の運勢は〜", inline=True)
   embed.add_field(name="/コマンド一覧", value="コマンド一覧を説明無しで一覧表示する。", inline=False)
@@ -57,9 +57,9 @@ async def ヘルプ_command(interaction: discord.Interaction):
 #------------------------------------------------------------------ コマンド一覧機能 ------------------------------------------------------------------
 
 @tree.command(name="コマンド一覧",description="コマンド一覧を説明無しで表示する。")
-async def commandlist_command(interaction: discord.Interaction):
+async def コマンド一覧_command(interaction: discord.Interaction):
   embed=discord.Embed(title="コマンド一覧", description="コマンド一覧を表示します。", color=0x00ffff)
-  embed.set_author(name="NikkouServerBOT Command List", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT コマンド一覧", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="/ヘルプ", value="", inline=False)
   embed.add_field(name="/おみくじ", value="", inline=False)
   embed.add_field(name="/コマンド一覧", value="", inline=False)
@@ -73,19 +73,19 @@ async def commandlist_command(interaction: discord.Interaction):
 
 #------------------------------------------------------------------ レポートヘルプ機能 ------------------------------------------------------------------
 
-@tree.command(name="レポートヘルプ",description="reportの仕方がわからないときに使ってね！")
-async def helpreport_command(interaction: discord.Interaction):
+@tree.command(name="レポートヘルプ",description="レポートの仕方がわからないときに使ってね！")
+async def レポートヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="レポートする方法", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT help-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT レポートヘルプ", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="レポート対象が人の場合", value="", inline=False)
   embed.add_field(name="手順1", value="通報内容がわかるスクリーンショットを用意できるなら用意します。", inline=False)
-  embed.add_field(name="手順2", value="日光サーバーのdiscord内で、/reportコマンドを使用します。", inline=False)
+  embed.add_field(name="手順2", value="日光サーバーのdiscord内で、/ユーザーレポート コマンドを使用します。", inline=False)
   embed.add_field(name="違反者", value="違反者のdiscord名を入れてください。", inline=False)
   embed.add_field(name="本文", value="違反者の犯した違反の内容を記入してください", inline=False)
   embed.add_field(name="スクリーンショット", value="スクリーンショットの画像ファイルを指定してください。ない場合ははらなくてOKです。", inline=False)
   embed.add_field(name="レポート対象がバグの場合", value="", inline=False)
   embed.add_field(name="手順1", value="バグのスクリーンショットを用意できるなら用意します。", inline=False)
-  embed.add_field(name="手順2", value="日光サーバーのdiscord内で、/bugreportコマンドを使用します。", inline=False)
+  embed.add_field(name="手順2", value="日光サーバーのdiscord内で、/バグレポート コマンドを使用します。", inline=False)
   embed.add_field(name="本文", value="バグの内容をできるだけ詳しく説明してください。", inline=False)
   embed.add_field(name="スクリーンショット", value="スクリーンショットの画像ファイルを指定してください。ない場合ははらなくてOKです。", inline=False)
   embed.add_field(name="", value="お手数おかけいたしますが、バグや治安改善のためご協力ください。", inline=False)
@@ -106,7 +106,7 @@ async def おみくじ_command(interaction: discord.Interaction):
 @tree.command(#プレーヤーレポート
       name="ユーザーレポート",description="サーバー内での迷惑行為を報告できます。")
 @app_commands.describe(違反者="違反者のユーザーを選んでください")
-async def report_command(interaction: discord.Interaction,違反者:discord.Member,本文:str,スクリーンショット:discord.Attachment=None):
+async def ユーザーレポート_command(interaction: discord.Interaction,違反者:discord.Member,本文:str,スクリーンショット:discord.Attachment=None):
   送信したユーザー = interaction.user.name
   送信された時間 = datetime.datetime.now()
   channel = client.get_channel(1057957897197338624)
@@ -137,7 +137,7 @@ async def report_command(interaction: discord.Interaction,違反者:discord.Memb
 @tree.command(
   name="バグレポート",
   description="BOTやマイクラのバグなどを報告できます。")
-async def bugreport_command(
+async def バグレポート_command(
   interaction: discord.Interaction, 本文: str, スクリーンショット: discord.Attachment=None):
   送信したユーザー = interaction.user.name
   送信された時間 = datetime.datetime.now()
@@ -173,9 +173,9 @@ async def welcome_command(interaction: discord.Interaction):
 #------------------------------------------------------------------ ミュージックヘルプ機能 ------------------------------------------------------------------
 
 @tree.command(name="ミュージックヘルプ",description="ミュージック機能がわからないときに使ってね。")
-async def helpmusic_command(interaction: discord.Interaction):
+async def ミュージックヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="ミュージック機能を使う方法", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT help-music", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT ミュージックヘルプ", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="ボイスチャットに参加させる", value="n!summon または n!sm", inline=True)
   embed.add_field(name="ボイスチャットから抜けさせる", value="n!disconnect または n!dc", inline=True)
   embed.add_field(name="現在再生中の曲の詳細を表示", value="n!np", inline=True)
