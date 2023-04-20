@@ -195,6 +195,7 @@ async def サイコロ_command(interaction: discord.Interaction):
   await interaction.response.send_message(choice,ephemeral=False)
 
 #------------------------------------------------------------------ リンク集機能 ------------------------------------------------------------------
+
 @tree.command(name="リンク集",description="NikkouServerServiceのリンク集を表示します。")
 async def リンク集_commnad(interaction: discord.Interaction):
   embed=discord.Embed(title="リンク集", color=0x00ff59)
