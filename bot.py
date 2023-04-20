@@ -199,7 +199,8 @@ async def サイコロ_command(interaction: discord.Interaction):
 async def リンク集_commnad(interaction: discord.Interaction):
   embed=discord.Embed(title="リンク集", color=0x00ff59)
   embed.set_author(name="NikkouServerBOT リンク集", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name="Webサイト", value="https://se.nikkou.nagoya")
+  embed.add_field(name="Webサイト", value="https://ssnikkou.com")
+  embed.add_field(name="マイクラサーバーWebサイト", value="https://mcnikkou.com")
   embed.add_field(name="寄付(Fantia)", value="https://fantia.jp/fanclubs/488442")
   await interaction.response.send_message(embed=embed, ephemeral=True)
   
