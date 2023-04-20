@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.1.5"
+VER = "1.1.6"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
