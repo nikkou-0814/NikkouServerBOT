@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.1.7"
+VER = "1.1.8"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -18,7 +18,7 @@ tree = app_commands.CommandTree(client)
 async def on_ready():
   print("Bot起動完了！")
   await tree.sync()
-  await client.change_presence(activity=discord.Game(name=f"BOTの説明は/help | {(VER)}"))
+  await client.change_presence(activity=discord.Game(name=f"BOTの説明は/ヘルプ | {(VER)}"))
 
 #------------------------------------------------------------------ VC通知機能 ------------------------------------------------------------------
 
