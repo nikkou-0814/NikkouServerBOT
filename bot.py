@@ -213,20 +213,22 @@ async def リンク集_commnad(interaction: discord.Interaction):
 async def announce_command(
   interaction: discord.Interaction, タイトル: str, テキスト: str, 画像: discord.Attachment=None):
   channel = client.get_channel(1057567216003973141)
-
+  作成したユーザー = interaction.user.name
+  
   await interaction.response.defer(ephemeral=True)
 
   embed=discord.Embed(title=f"[{(タイトル)}]", color=0x00ff59)
   embed.set_author(name="NikkouServerBOT アナウンス", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name=f"{(テキスト)}", value="", inline=True)
+  embed.add_field(name="内容", value=f"{(テキスト)}", inline=False)
+  embed.add_field(name="作成したユーザー", value=f"{(作成したユーザー)}",inline=False)
 
   if 画像 == None:
-    embed.add_field(name="画像なし",value="",inline=False)
+    embed.add_field(name="画像",value="ありません",inline=False)
   else:
     embed.set_image(url=画像.url)
 
   await interaction.followup.send("送信完了", ephemeral=True)
-  embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
+  embed.set_footer(text=f"version {(VER)} | made by {(作成したユーザー)}")
   await channel.send(embed=embed)
   
 client.run(os.getenv('TOKEN'))
