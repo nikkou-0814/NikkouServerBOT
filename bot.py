@@ -231,4 +231,10 @@ async def announce_command(
   embed.set_footer(text=f"version {(VER)} | made by {(作成したユーザー)}")
   await channel.send(embed=embed)
   
+  #------------------------------------------------------------------ Embed機能 ------------------------------------------------------------------
+@tree.command(name="newEmbed",discription="beta-command")
+  async def newEmbed_command(interaction: discord.Interaction, タイトル: str,):
+    ユーザー = interaction.user.name
+    
+    await interaction.responce.defer(ephemeral=True)
 client.run(os.getenv('TOKEN'))
