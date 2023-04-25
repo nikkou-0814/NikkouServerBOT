@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.1.9"
+VER = "1.2.0"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -115,7 +115,7 @@ async def ユーザーレポート_command(interaction: discord.Interaction,違�
   await interaction.response.defer(ephemeral=True)
 
   embed = discord.Embed(title="ユーザーレポート", color=0x00ff59)
-  embed.set_author(name="NikkouServerCommunityBOT user-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT user-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="送信者", value=送信したユーザー, inline=False)
   embed.add_field(name="違反者", value=違反者, inline=False)
   embed.add_field(name="通報内容", value=本文, inline=False)
@@ -147,7 +147,7 @@ async def バグレポート_command(
   await interaction.response.defer(ephemeral=True)
 
   embed = discord.Embed(title="プレーヤーレポート", color=0x00ff59)
-  embed.set_author(name="NikkouServerCommunityBOT bug-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT bug-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="送信者", value=送信したユーザー, inline=False)
   embed.add_field(name="バグの内容", value=本文, inline=False)
 
@@ -165,7 +165,7 @@ async def バグレポート_command(
 
 #------------------------------------------------------------------ welcome機能 ------------------------------------------------------------------
 
-@tree.command(name="welcome",description="Admin-Commands")
+@tree.command(name="Welcome",description="Admin-Command")
 @app_commands.checks.has_permissions(moderate_members=True)
 async def welcome_command(interaction: discord.Interaction):
   await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこちらをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は /ヘルプ で表示できます！（このBOTのメッセージは、「/おみくじ」と「/サイコロ」以外すべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False)
@@ -195,6 +195,7 @@ async def サイコロ_command(interaction: discord.Interaction):
   await interaction.response.send_message(choice,ephemeral=False)
 
 #------------------------------------------------------------------ リンク集機能 ------------------------------------------------------------------
+
 @tree.command(name="リンク集",description="NikkouServerServiceのリンク集を表示します。")
 async def リンク集_commnad(interaction: discord.Interaction):
   embed=discord.Embed(title="リンク集", color=0x00ff59)
@@ -202,6 +203,30 @@ async def リンク集_commnad(interaction: discord.Interaction):
   embed.add_field(name="Webサイト", value="https://ssnikkou.com")
   embed.add_field(name="マイクラサーバーWebサイト", value="https://mcnikkou.com")
   embed.add_field(name="寄付(Fantia)", value="https://fantia.jp/fanclubs/488442")
+  embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed, ephemeral=True)
+
+#------------------------------------------------------------------ Announce機能 ------------------------------------------------------------------
+
+@tree.command(name="Announce",description="Admin-command")
+@app_commands.checks.has_permissions(moderate_members=True)
+async def announce_command(
+  interaction: discord.Interaction, タイトル: str, テキスト: str, 画像: discord.Attachment=None):
+  channel = client.get_channel(1057567216003973141)
+
+  await interaction.response.defer(ephemeral=True)
+
+  embed=discord.Embed(title=f"[{(タイトル)}]", color=0x00ff59)
+  embed.set_author(name="NikkouServerBOT アナウンス", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name=f"{(テキスト)}", value="", inline=True)
+
+  if 画像 == None:
+    embed.add_field(name="画像なし",value="",inline=False)
+  else:
+    embed.set_image(url=画像.url)
+
+  await interaction.followup.send("送信完了", ephemeral=True)
+  embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
+  await channel.send(embed=embed)
   
 client.run(os.getenv('TOKEN'))
