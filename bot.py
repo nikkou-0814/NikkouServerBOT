@@ -237,4 +237,5 @@ async def announce_command(
     ユーザー = interaction.user.name
     
     await interaction.responce.defer(ephemeral=True)
+    
 client.run(os.getenv('TOKEN'))
