@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.2.0"
+VER = "1.2.1"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -165,8 +165,8 @@ async def バグレポート_command(
 
 #------------------------------------------------------------------ welcome機能 ------------------------------------------------------------------
 
-@tree.command(name="Welcome",description="Admin-Command")
-@app_commands.checks.has_permissions(moderate_members=True)
+@tree.command(name="welcome",description="Admin-Command")
+@app_commands.default_permissions(administrator=True)
 async def welcome_command(interaction: discord.Interaction):
   await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこちらをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は /ヘルプ で表示できます！（このBOTのメッセージは、「/おみくじ」と「/サイコロ」以外すべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False)
 
@@ -208,8 +208,8 @@ async def リンク集_commnad(interaction: discord.Interaction):
 
 #------------------------------------------------------------------ Announce機能 ------------------------------------------------------------------
 
-@tree.command(name="Announce",description="Admin-command")
-@app_commands.checks.has_permissions(moderate_members=True)
+@tree.command(name="announce",description="Admin-command")
+@app_commands.default_permissions(administrator=True)
 async def announce_command(
   interaction: discord.Interaction, タイトル: str, テキスト: str, 画像: discord.Attachment=None):
   channel = client.get_channel(1057567216003973141)
@@ -231,11 +231,34 @@ async def announce_command(
   embed.set_footer(text=f"version {(VER)} | made by {(作成したユーザー)}")
   await channel.send(embed=embed)
   
-  #------------------------------------------------------------------ Embed機能 ------------------------------------------------------------------
-@tree.command(name="newEmbed",discription="beta-command")
-  async def newEmbed_command(interaction: discord.Interaction, タイトル: str,):
-    ユーザー = interaction.user.name
-    
-    await interaction.responce.defer(ephemeral=True)
-    
+#------------------------------------------------------------------ Embed機能 ------------------------------------------------------------------
+
+@tree.command(name="newembed",description="beta-command")
+async def newembed_command(
+  interaction: discord.Interaction, タイトル: str, name1: str, 全員に表示: bool,画像: discord.Attachment=None, value1: str=None):
+  ユーザー = interaction.user.name
+
+  await interaction.response.defer(ephemeral=True)
+
+  embed=discord.Embed(title=f"{(タイトル)}", color=0x00ff59)
+  embed.set_author(name="NikkouServerBOT newEmbed", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name=f"{(name1)}",value=f"{(value1)}",inline=False)
+
+  if 画像 == None:
+     embed.add_field(name="画像",value="ありません",inline=False)
+  else:
+     embed.set_imaget(url=画像.url)
+
+  await interaction.followup.send("完了しました",ephemeral=True)
+  embed.set_footer(text=f"{(VER)} | embed by {(ユーザー)}")
+  await interaction.followup.send(embed=embed,ephemeral=全員に表示)
+
+#------------------------------------------------------------------ stop機能 ------------------------------------------------------------------
+
+@tree.command(name="stop",description="Botを停止")
+@app_commands.default_permissions(administrator=True)
+async def test_command(interaction:discord.Interaction):
+    await interaction.response.send_message("Botを停止します。",ephemeral=True)
+    await client.close()
+
 client.run(os.getenv('TOKEN'))
