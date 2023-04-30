@@ -232,7 +232,7 @@ async def announce_command(
   embed.set_footer(text=f"version {(VER)} | announce by {(作成したユーザー)}")
   await channel.send(embed=embed)
   
-#------------------------------------------------------------------ Embed機能 ------------------------------------------------------------------
+#------------------------------------------------------------------ newembed機能 ------------------------------------------------------------------
 
 @tree.command(name="newembed",description="埋め込みメッセージを送信")
 async def newembed_command(
@@ -246,7 +246,7 @@ async def newembed_command(
   embed.add_field(name=f"{(name)}",value=f"{(value)}",inline=False)
 
   if 画像 == None:
-     embed.add_field(name="画像はありません",value="",inline=False)
+     embed.add_field(name="",value="",inline=False)
   else:
      embed.set_image(url=画像.url)
 
