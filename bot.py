@@ -237,7 +237,7 @@ async def announce_command(
 
 @tree.command(name="newembed",description="埋め込みメッセージを送信")
 async def newembed_command(
-  interaction: discord.Interaction, タイトル: str, name: str, 全員に表示しない: bool,画像: discord.Attachment=None, value: str=None):
+  interaction: discord.Interaction, タイトル: str, name: str, ephemeral: bool,画像: discord.Attachment=None, value: str=None):
   ユーザー = interaction.user.name
 
   await interaction.response.defer(ephemeral=True)
@@ -253,7 +253,7 @@ async def newembed_command(
 
   await interaction.followup.send("完了しました",ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | embed by {(ユーザー)}")
-  await interaction.followup.send(embed=embed,ephemeral=全員に表示しない)
+  await interaction.followup.send(embed=embed,ephemeral=ephemeral)
 
 #------------------------------------------------------------------ stop機能 ------------------------------------------------------------------
 
