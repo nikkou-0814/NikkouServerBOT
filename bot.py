@@ -221,7 +221,7 @@ async def announce_command(
 
   embed=discord.Embed(title=f"[{(タイトル)}]", color=0x00ff59)
   embed.set_author(name="NikkouServerBOT アナウンス", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name="内容", value=f"{(テキスト)}", inline=False)
+  embed.add_field(name=f"{(テキスト)}", value="", inline=False)
 
   if 画像 == None:
     embed.add_field(name="",value="",inline=False)
