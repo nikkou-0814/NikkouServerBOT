@@ -51,6 +51,7 @@ async def ヘルプ_command(interaction: discord.Interaction):
   embed.add_field(name="/レポートヘルプ",value="レポートがわからないときに使ってね。")
   embed.add_field(name="/ミュージックヘルプ",value="ミュージック機能がわからないときに使ってね。")
   embed.add_field(name="/サイコロ",value="サイコロを振ります！")
+  embed.add_field(name="/newembed",value="埋め込みメッセージを送信")
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
@@ -68,6 +69,7 @@ async def コマンド一覧_command(interaction: discord.Interaction):
   embed.add_field(name="/レポートヘルプ",value="",inline=False)
   embed.add_field(name="/ミュージックヘルプ",value="",inline=False)
   embed.add_field(name="/サイコロ",value="",inline=False)
+  embed.add_field(name="/newembed",value="",inline=False)
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed,ephemeral=True)
 
@@ -233,25 +235,25 @@ async def announce_command(
   
 #------------------------------------------------------------------ Embed機能 ------------------------------------------------------------------
 
-@tree.command(name="newembed",description="beta-command")
+@tree.command(name="newembed",description="埋め込みメッセージを送信")
 async def newembed_command(
-  interaction: discord.Interaction, タイトル: str, name1: str, 全員に表示: bool,画像: discord.Attachment=None, value1: str=None):
+  interaction: discord.Interaction, タイトル: str, name: str, 全員に表示しない: bool,画像: discord.Attachment=None, value: str=None):
   ユーザー = interaction.user.name
 
   await interaction.response.defer(ephemeral=True)
 
   embed=discord.Embed(title=f"{(タイトル)}", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT newEmbed", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name=f"{(name1)}",value=f"{(value1)}",inline=False)
+  embed.set_author(name="NikkouServerBOT newembed", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name=f"{(name)}",value=f"{(value)}",inline=False)
 
   if 画像 == None:
-     embed.add_field(name="画像",value="ありません",inline=False)
+     embed.add_field(name="画像はありません",value="",inline=False)
   else:
-     embed.set_imaget(url=画像.url)
+     embed.set_image(url=画像.url)
 
   await interaction.followup.send("完了しました",ephemeral=True)
-  embed.set_footer(text=f"{(VER)} | embed by {(ユーザー)}")
-  await interaction.followup.send(embed=embed,ephemeral=全員に表示)
+  embed.set_footer(text=f"version {(VER)} | embed by {(ユーザー)}")
+  await interaction.followup.send(embed=embed,ephemeral=全員に表示しない)
 
 #------------------------------------------------------------------ stop機能 ------------------------------------------------------------------
 
