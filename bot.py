@@ -222,15 +222,14 @@ async def announce_command(
   embed=discord.Embed(title=f"[{(タイトル)}]", color=0x00ff59)
   embed.set_author(name="NikkouServerBOT アナウンス", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="内容", value=f"{(テキスト)}", inline=False)
-  embed.add_field(name="作成したユーザー", value=f"{(作成したユーザー)}",inline=False)
 
   if 画像 == None:
-    embed.add_field(name="画像",value="ありません",inline=False)
+    embed.add_field(name="",value="",inline=False)
   else:
     embed.set_image(url=画像.url)
 
   await interaction.followup.send("送信完了", ephemeral=True)
-  embed.set_footer(text=f"version {(VER)} | made by {(作成したユーザー)}")
+  embed.set_footer(text=f"version {(VER)} | announce by {(作成したユーザー)}")
   await channel.send(embed=embed)
   
 #------------------------------------------------------------------ Embed機能 ------------------------------------------------------------------
