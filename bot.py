@@ -6,7 +6,7 @@ import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
-VER = "1.2.3"
+VER = "1.2.4"
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -30,7 +30,24 @@ async def on_voice_state_update(member, before, after):
         botRoom = client.get_channel(1048499946007056444)
 
         # 入退室を監視するVC
-        announceChannelIds = [1061920720294268938, 1018187083526975549, 1018187142205284454, 1054056759939039232, 1054056788376432660, 1057949512934629456]
+        announceChannelIds = [1018187083526975549, 1018187142205284454, 1054056759939039232, 1054056788376432660, 1061920720294268938]
+
+        if before.channel is not None and before.channel.id in announceChannelIds:
+            await botRoom.send("**" + before.channel.name + "** から、__" + member.name + "__  さんが退室しました！")
+        if after.channel is not None and after.channel.id in announceChannelIds:
+            await botRoom.send("**" + after.channel.name + "** に、__" + member.name + "__  さんが入室しました！")
+
+#------------------------------------------------------------------ VC通知機能普段用 ------------------------------------------------------------------
+
+@client.event
+async def on_voice_state_update(member, before, after):
+
+    if before.channel != after.channel:
+        # メッセージを書き込むtxtch
+        botRoom = client.get_channel(1107447777132286052)
+
+        # 入退室を監視するVC
+        announceChannelIds = [1090228103705542706, 1099276311345778769]
 
         if before.channel is not None and before.channel.id in announceChannelIds:
             await botRoom.send("**" + before.channel.name + "** から、__" + member.name + "__  さんが退室しました！")
@@ -261,5 +278,13 @@ async def newembed_command(
 async def test_command(interaction:discord.Interaction):
     await interaction.response.send_message("Botを停止します。",ephemeral=True)
     await client.close()
+
+#------------------------------------------------------------------ clean機能 ------------------------------------------------------------------
+
+@tree.command(name="clean", description="メッセージ削除")
+@app_commands.checks.has_permissions(moderate_members=True)
+async def clean_commnad(interaction: discord.Interaction, how:int):
+  await interaction.response.defer()
+  deleted = await interaction.channel.purge(limit=how+1)
 
 client.run(os.getenv('TOKEN'))
