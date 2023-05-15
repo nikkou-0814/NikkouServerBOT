@@ -4,10 +4,22 @@ import os
 import random
 import datetime
 from dotenv import load_dotenv
+from discord.ext import tasks,commands
+import time
+from time import sleep
+from datetime import datetime, timedelta
+import json
+import pykakasi
+import re
+import romkan
+
 load_dotenv()
 
 VER = "1.2.4b"
 
+kks = pykakasi.kakasi()
+intents = discord.Intents.default()
+intents.message_content = True
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
@@ -19,6 +31,95 @@ async def on_ready():
   print("Bot起動完了！")
   await tree.sync()
   await client.change_presence(activity=discord.Game(name=f"BOTの説明は/ヘルプ | v{(VER)}"))
+
+#------------------------------------------------------------------ 禁止ワード削除 ------------------------------------------------------------------
+
+@client.event
+async def on_message(message):
+    message.content=remove_spaces(message.content)
+    if not message.author.bot:
+#        await message.channel.send(kks.convert(message.content))
+        if check_text(message.content):
+#            await message.channel.send(kks.convert(message.content))
+            await message.delete()
+
+#------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
+
+@tree.command(name="これはえっちすぎます", description="新種のえっちな言葉を追加")
+@commands.has_permissions(administrator=True)
+async def cloud(interaction: discord.Interaction,word: str):
+    server_id = 1010856148083150928  # 指定するServer ID
+    if interaction.guild.id != server_id:
+        await interaction.response.send_message('このコマンドは許可されていません。')
+
+#------------------------------------------------------------------ 自動削除系関数 ------------------------------------------------------------------
+
+#--ひらがなに変換--
+def toKanji(s):
+#    print(s)
+    s = romkan.to_hiragana(s)
+    return s
+
+#--リスト追加--
+def add_word_to_blacklist(word):
+    json_file_path = 'blacklist.json'
+
+    # 辞書の読み込み
+    with open(json_file_path, 'r', encoding='utf-8') as json_file:
+        word_list = json.load(json_file)
+
+    # 新しい言葉を追加
+    word_list.append(word)
+
+    # 辞書を再保存
+    with open(json_file_path, 'w', encoding='utf-8') as json_file:
+        json.dump(word_list, json_file, ensure_ascii=False, indent=4)
+
+#--テキスト検査--
+def check_text(text):
+    json_file = open('blacklist.json', 'r')
+    word_list = json.load(json_file)
+#    print(word_list)
+    for word in word_list:
+#        print(kks.convert(word) in kks.convert(text))
+        text=replace_ltu(text)
+        print(text)
+        kksword="";
+        lkksword="";
+        for kkswords in kks.convert(text):
+            kksword=kksword+kkswords["passport"]
+        for lkkswords in kks.convert(word):
+            lkksword=lkksword+lkkswords["passport"]
+        print(toKanji(kksword).replace("lつ", "っ"))
+        print(lkksword +"  ms:"+ kks.convert(toKanji(kksword).replace("lつ", "っ"))[0]["passport"])
+        if kks.convert(lkksword)[0]["passport"] in kks.convert(toKanji(kksword).replace("lつ", "っ"))[0]["passport"]:
+            print("list:"+kks.convert(lkksword)[0]["passport"]+"  old:"+word)
+            print("ms:"+kks.convert(toKanji(kksword))[0]["passport"])
+#            print("削除します")
+            return True
+    return False
+#--「死ね」の文脈検査(現在は使用していない)--
+def check_before_shine(text):
+    index = remove_spaces(text).find("しね")
+    if index == -1 or index == 0:
+        return False
+    else:
+        before_text = text[:index]
+        if before_text.strip() == "":
+            return False
+        else:
+            return True
+
+#--文字からスペースを削除する--
+def remove_spaces(text):
+    # 半角スペース、改行、全角スペースを削除する正規表現パターン
+    pattern = r'[ 　\n]'
+    # 正規表現パターンにマッチする部分を空文字列で置換
+    cleaned_text = re.sub(pattern, '', text)
+    return cleaned_text
+#--「つ」の変換--
+def replace_ltu(string):
+    return string.replace("っ", "ltu").replace("ッ", "ltu")
 
 #------------------------------------------------------------------ VC通知機能 ------------------------------------------------------------------
 
