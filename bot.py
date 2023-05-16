@@ -41,6 +41,7 @@ async def on_message(message):
         if check_text(message.content):
 #            await message.channel.send(kks.convert(message.content))
             await message.delete()
+            await message.channel.send('汚ねぇ下ネタだこと....')
 
 #------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
 
