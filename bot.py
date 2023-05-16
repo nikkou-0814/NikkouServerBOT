@@ -81,20 +81,23 @@ def check_text(text):
     word_list = json.load(json_file)
 #    print(word_list)
     for word in word_list:
+        if  word in text:
+            return True
+    for word in word_list:
 #        print(kks.convert(word) in kks.convert(text))
         text=replace_ltu(text)
-        print(text)
+#        print(text)
         kksword="";
         lkksword="";
         for kkswords in kks.convert(text):
             kksword=kksword+kkswords["passport"]
         for lkkswords in kks.convert(word):
             lkksword=lkksword+lkkswords["passport"]
-        print(toKanji(kksword).replace("lつ", "っ"))
-        print(lkksword +"  ms:"+ kks.convert(toKanji(kksword).replace("lつ", "っ"))[0]["passport"])
+#        print(toKanji(kksword).replace("lつ", "っ"))
+#        print(lkksword +"  ms:"+ kks.convert(toKanji(kksword).replace("lつ", "っ"))[0]["passport"])
         if kks.convert(lkksword)[0]["passport"] in kks.convert(toKanji(kksword).replace("lつ", "っ"))[0]["passport"]:
-            print("list:"+kks.convert(lkksword)[0]["passport"]+"  old:"+word)
-            print("ms:"+kks.convert(toKanji(kksword))[0]["passport"])
+#            print("list:"+kks.convert(lkksword)[0]["passport"]+"  old:"+word)
+#            print("ms:"+kks.convert(toKanji(kksword))[0]["passport"])
 #            print("削除します")
             return True
     return False
