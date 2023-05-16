@@ -50,7 +50,8 @@ async def cloud(interaction: discord.Interaction,word: str):
     server_id = 1010856148083150928  # 指定するServer ID
     if interaction.guild.id != server_id:
         await interaction.response.send_message('このコマンドは許可されていません。')
-
+    add_word_to_blacklist(word)
+    await interaction.response.send_message('これからはこの言葉も死刑です！')
 #------------------------------------------------------------------ 自動削除系関数 ------------------------------------------------------------------
 
 #--ひらがなに変換--
