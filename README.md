@@ -18,7 +18,8 @@
 
 pip install -r requirements.txt
 ```
-
+## 注意
+チャンネルIDなどはそのままですのでコードを使用する場合は変更してください。
 ## 開発者へ
 gitmojiの使用を開始したので、できればgitmojiでのコミットをしてください。
 url:https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode
