@@ -41,11 +41,11 @@ async def on_message(message):
         if check_text(message.content):
 #            await message.channel.send(kks.convert(message.content))
             await message.delete()
-            await message.channel.send('汚ねぇ下ネタだこと....')
+            await message.channel.send('不適切なメッセージを削除しました。')
 
 #------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
 
-@tree.command(name="これはえっちすぎます", description="新種のえっちな言葉を追加")
+@tree.command(name="禁止ワード追加", description="禁止ワードを追加")
 @commands.has_permissions(administrator=True)
 async def cloud(interaction: discord.Interaction,word: str):
     server_id = 1010856148083150928  # 指定するServer ID
@@ -273,9 +273,9 @@ async def バグレポート_command(
 
 #------------------------------------------------------------------ welcome機能 ------------------------------------------------------------------
 
-@tree.command(name="welcome",description="Admin-Command")
+@tree.command(name="setup",description="Admin-Command")
 @app_commands.default_permissions(administrator=True)
-async def welcome_command(interaction: discord.Interaction):
+async def setup_command(interaction: discord.Interaction):
   allowed_mentions = discord.AllowedMentions(everyone = True)
   await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこちらをしてください！\n\n> **ステップ.1 | 認証しよう！**\n\nhttps://discord.com/channels/1010856148083150928/1107107150381187123 で認証ボタンをクリック！。\n\n> **ステップ.2 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.3 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.4 | その他**\n\n このBOTの使い方は /ヘルプ で表示できます！（このBOTのメッセージは、「/おみくじ」と「/サイコロ」以外すべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False, allowed_mentions = allowed_mentions)
 
@@ -320,7 +320,7 @@ async def リンク集_commnad(interaction: discord.Interaction):
 @tree.command(name="announce",description="Admin-command")
 @app_commands.default_permissions(administrator=True)
 async def announce_command(
-  interaction: discord.Interaction, タイトル: str, テキスト: str, 画像: discord.Attachment=None):
+  interaction: discord.Interaction, タイトル: str, テキスト: str, mention: bool, 画像: discord.Attachment=None):
   channel = client.get_channel(1057567216003973141)
   作成したユーザー = interaction.user.name
   
@@ -334,7 +334,6 @@ async def announce_command(
     embed.add_field(name="",value="",inline=False)
   else:
     embed.set_image(url=画像.url)
-
   await interaction.followup.send("送信完了", ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | announce by {(作成したユーザー)}")
   await channel.send(embed=embed)
