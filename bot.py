@@ -320,7 +320,7 @@ async def リンク集_commnad(interaction: discord.Interaction):
 @tree.command(name="announce",description="Admin-command")
 @app_commands.default_permissions(administrator=True)
 async def announce_command(
-  interaction: discord.Interaction, タイトル: str, テキスト: str, hemention: bool=None, evmention: bool=None, 画像: discord.Attachment=None):
+  interaction: discord.Interaction, タイトル: str, テキスト: str, 画像: discord.Attachment=None):
   channel = client.get_channel(1057567216003973141)
   作成したユーザー = interaction.user.name
   
@@ -334,16 +334,6 @@ async def announce_command(
     embed.add_field(name="",value="",inline=False)
   else:
     embed.set_image(url=画像.url)
-
-  if hemention == True:
-    embed.set_field(name="@here",value="",inline=False,allowed_mentions = allowed_mentions)
-  else:
-     embed.add_field(name="",value="",inline=False)
-  
-  if evmention == True:
-    embed.set_field(name="@eveyone",value="",inline=False,allowed_mentions = allowed_mentions)
-  else:
-     embed.add_field(name="",value="",inline=False)
 
   await interaction.followup.send("送信完了", ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | announce by {(作成したユーザー)}")
