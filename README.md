@@ -15,7 +15,8 @@
 注意:python3がインストールされている前提です。
 ```
 セットアップ
-
+git clone https://github.com/nikkou-0814/NikkouServerBOT
+mv env_見本 .env
 pip install -r requirements.txt
 ```
 ## 注意
