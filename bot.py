@@ -338,12 +338,12 @@ async def announce_command(
   if hemention == True:
     embed.set_field(name="@here",value="",inline=False,allowed_mentions = allowed_mentions)
   else:
-     embed.set_field(name="",value="")
+     embed.add_field(name="",value="",inline=False)
   
   if evmention == True:
     embed.set_field(name="@eveyone",value="",inline=False,allowed_mentions = allowed_mentions)
   else:
-     embed.set_field(name="",value="")
+     embed.add_field(name="",value="",inline=False)
 
   await interaction.followup.send("送信完了", ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | announce by {(作成したユーザー)}")
