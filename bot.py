@@ -35,12 +35,16 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    oldm=message.content
     message.content=remove_spaces(message.content)
     if not message.author.bot:
 #        await message.channel.send(kks.convert(message.content))
         if check_text(message.content):
 #            await message.channel.send(kks.convert(message.content))
             await message.delete()
+            user = await client.fetch_user("835418384140992524")
+            username = await client.fetch_user(message.author.id)
+            await user.send(f' <@{username.id}>の「{oldm}]というメッセージが削除されました。')
             await message.channel.send('不適切なメッセージを削除しました。')
 
 #------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
