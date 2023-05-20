@@ -49,7 +49,7 @@ async def on_message(message):
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
             embed.add_field(name="メッセージ", value=f"{oldm}")
             embed.add_field(name="チャンネル", value=f"{message.channel.name}")
-            embed.set_footer(text=f"{message.author.name}", icon_url=f"{message.author.avatar_url}")
+            embed.set_footer(text=f"{client.user.name}", icon_url=f"{client.user.avatar_url}")
             await user.send(embed=embed)
 
 #------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
