@@ -44,7 +44,7 @@ async def on_message(message):
             await message.delete()
             user = await client.fetch_user("835418384140992524")
             username = await client.fetch_user(message.author.id)
-            embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), url="https://www.ssnikkou.com/", description="下記が削除したメッセージの詳細です。", timestamp=datetime.datetime.utcfromtimestamp(1551172370))
+            embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.utcfromtimestamp(1551172370))
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
             embed.add_field(name="メッセージ", value=f"{oldm}")
             await user.send(embed=embed)
