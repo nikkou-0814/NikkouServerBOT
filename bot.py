@@ -45,11 +45,11 @@ async def on_message(message):
             await message.channel.send('不適切なメッセージを削除しました。')
             user = await client.fetch_user("835418384140992524")
             username = await client.fetch_user(message.author.id)
-            embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.utcfromtimestamp(1551172370))
+            embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.fromtimestamp(time.time()))
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
             embed.add_field(name="メッセージ", value=f"{oldm}")
             embed.add_field(name="チャンネル", value=f"{message.channel.name}")
-            embed.set_footer(text=f"{client.user.name}", icon_url=f"{client.user.avatar_url}")
+            embed.set_footer(text=f"{client.user.name}", icon_url=f"{client.user.avatar}")
             await user.send(embed=embed)
 
 #------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
