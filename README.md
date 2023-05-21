@@ -20,7 +20,7 @@ mv env_見本 .env
 pip install -r requirements.txt
 ```
 ## 注意
-チャンネルIDなどはそのままですのでコードを使用する場合は変更してください。
+このBOTはNikkouServer専用に最適化されているので、コードを使用して他のサーバーに導入することは、推奨しておりません。
 ## 開発者へ
 gitmojiの使用を開始したので、できればgitmojiでのコミットをしてください。
 url:https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode
