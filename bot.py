@@ -43,7 +43,11 @@ async def on_message(message):
 #            await message.channel.send(kks.convert(message.content))
             await message.delete()
             await message.channel.send('不適切なメッセージを削除しました。')
-            user = await client.fetch_user("835418384140992524")
+            load_dotenv()
+            if(os.getenv('DEBUG')=="TRUE"):
+                user = await client.fetch_user("784646064937500692")
+            else:
+                user = await client.fetch_user("835418384140992524")
             username = await client.fetch_user(message.author.id)
             embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.fromtimestamp(time.time()))
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
