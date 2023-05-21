@@ -52,7 +52,7 @@ async def on_message(message):
             embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.fromtimestamp(time.time()))
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
             embed.add_field(name="メッセージ", value=f"{oldm}")
-            embed.add_field(name="チャンネル", value=f"{message.channel.name}")
+            embed.add_field(name="チャンネル", value=f"<#{message.channel.name}>")
             embed.set_footer(text=f"{client.user.name}", icon_url=f"{client.user.avatar}")
             await user.send(embed=embed)
 
