@@ -48,11 +48,13 @@ async def on_message(message):
                 user = await client.fetch_user("784646064937500692")
             else:
                 user = await client.fetch_user("835418384140992524")
+            count=update_user_count(username.id)
             username = await client.fetch_user(message.author.id)
             embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.fromtimestamp(time.time()))
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
             embed.add_field(name="メッセージ", value=f"{oldm}")
             embed.add_field(name="チャンネル", value=f"<#{message.channel.id}>")
+            embed.add_field(name="違反回数", value=f"{count}")
             embed.set_footer(text=f"{client.user.name}", icon_url=f"{client.user.avatar}")
             await user.send(embed=embed)
 
@@ -67,6 +69,33 @@ async def cloud(interaction: discord.Interaction,word: str):
     add_word_to_blacklist(word)
     await interaction.response.send_message(f'{word} という禁止ワードを追加しました！')
 #------------------------------------------------------------------ 自動削除系関数 ------------------------------------------------------------------
+#--ユーザー情報--
+
+def update_user_count(user_id):
+    # ユーザー情報を読み込む
+    with open('userinfo.json', 'r') as file:
+        data = json.load(file)
+
+    # ユーザーIDの存在を確認し、カウントを追加するか新しいエントリーを作成する
+    user_exists = False
+    for user in data:
+        if user.get(user_id):
+            user[user_id]['count'] = str(int(user[user_id]['count']) + 1)
+            user_exists = True
+            break
+
+    if not user_exists:
+        new_user = {user_id: {'count': '1'}}
+        data.append(new_user)
+
+    # ユーザー情報を保存する
+    with open('userinfo.json', 'w') as file:
+        json.dump(data, file, indent=4)
+
+    # カウントを返す
+    count = str(data[0][user_id]['count'])
+    return count
+
 
 #--ひらがなに変換--
 def toKanji(s):
