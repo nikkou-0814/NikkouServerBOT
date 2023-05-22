@@ -58,14 +58,14 @@ async def on_message(message):
 
 #------------------------------------------------------------------ 禁止ワードリストに追加するためのコマンド ------------------------------------------------------------------
 
-@tree.command(name="禁止ワード追加", description="禁止ワードを追加")
+@tree.command(name="NGword", description="Admin-command")
 @commands.has_permissions(administrator=True)
 async def cloud(interaction: discord.Interaction,word: str):
     server_id = 1010856148083150928  # 指定するServer ID
     if interaction.guild.id != server_id:
         await interaction.response.send_message('このコマンドは許可されていません。')
     add_word_to_blacklist(word)
-    await interaction.response.send_message('これからはこの言葉も死刑です！')
+    await interaction.response.send_message(f'{word}という禁止ワードを追加しました！')
 #------------------------------------------------------------------ 自動削除系関数 ------------------------------------------------------------------
 
 #--ひらがなに変換--
@@ -376,7 +376,7 @@ async def newembed_command(
 
 #------------------------------------------------------------------ stop機能 ------------------------------------------------------------------
 
-@tree.command(name="stop",description="Botを停止")
+@tree.command(name="stop",description="Admin-command")
 @app_commands.default_permissions(administrator=True)
 async def test_command(interaction:discord.Interaction):
     await interaction.response.send_message("Botを停止します。",ephemeral=True)
@@ -384,7 +384,7 @@ async def test_command(interaction:discord.Interaction):
 
 #------------------------------------------------------------------ clean機能 ------------------------------------------------------------------
 
-@tree.command(name="clean", description="メッセージ削除")
+@tree.command(name="clean", description="Admin-command")
 @app_commands.checks.has_permissions(moderate_members=True)
 async def clean_commnad(interaction: discord.Interaction, how:int):
   await interaction.response.defer()
