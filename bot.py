@@ -48,8 +48,8 @@ async def on_message(message):
                 user = await client.fetch_user("784646064937500692")
             else:
                 user = await client.fetch_user("835418384140992524")
-            count=update_user_count(username.id)
             username = await client.fetch_user(message.author.id)
+            count=update_user_count(username.id)
             embed = discord.Embed(title="不審なメッセージを検知し削除しました。", colour=discord.Colour(0x112f43), description="下記が削除したメッセージの詳細です。", timestamp=datetime.fromtimestamp(time.time()))
             embed.add_field(name="ユーザー", value=f"<@{username.id}>")
             embed.add_field(name="メッセージ", value=f"{oldm}")
