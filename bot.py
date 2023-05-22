@@ -72,29 +72,21 @@ async def cloud(interaction: discord.Interaction,word: str):
 #--ユーザー情報--
 
 def update_user_count(user_id):
-    # ユーザー情報を読み込む
+    # userinfo.jsonの読み込み
     with open('userinfo.json', 'r') as file:
         data = json.load(file)
 
-    # ユーザーIDの存在を確認し、カウントを追加するか新しいエントリーを作成する
-    user_exists = False
-    for user in data:
-        if user.get(user_id):
-            user[user_id]['count'] = str(int(user[user_id]['count']) + 1)
-            user_exists = True
-            break
+    # ユーザーIDの存在確認
+    if user_id in data:
+        data[user_id]['count'] += 1  # カウントをインクリメント
+    else:
+        data[user_id] = {'count': 1}  # 新しいエントリーを作成
 
-    if not user_exists:
-        new_user = {user_id: {'count': '1'}}
-        data.append(new_user)
-
-    # ユーザー情報を保存する
+    # userinfo.jsonの書き込み
     with open('userinfo.json', 'w') as file:
         json.dump(data, file, indent=4)
 
-    # カウントを返す
-    count = str(data[0][user_id]['count'])
-    return count
+    return data[user_id]['count']
 
 
 #--ひらがなに変換--
