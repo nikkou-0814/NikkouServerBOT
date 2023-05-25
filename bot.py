@@ -15,7 +15,7 @@ import romkan
 
 load_dotenv()
 
-VER = "1.2.5"
+VER = "1.2.5.1"
 
 kks = pykakasi.kakasi()
 intents = discord.Intents.default()
@@ -345,7 +345,6 @@ async def リンク集_commnad(interaction: discord.Interaction):
   embed.set_author(name="NikkouServerBOT リンク集", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
   embed.add_field(name="Webサイト", value="https://ssnikkou.com")
   embed.add_field(name="マイクラサーバーWebサイト", value="https://mcnikkou.com")
-  embed.add_field(name="寄付(Fantia)", value="https://fantia.jp/fanclubs/488442")
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await interaction.response.send_message(embed=embed, ephemeral=True)
 
