@@ -15,7 +15,7 @@ import romkan
 
 load_dotenv()
 
-VER = "1.2.5.1"
+VER = "1.2.6"
 
 kks = pykakasi.kakasi()
 intents = discord.Intents.default()
@@ -413,15 +413,15 @@ async def clean_command(interaction: discord.Interaction, how:int):
 #------------------------------------------------------------------ BAN機能 ------------------------------------------------------------------
 
 @tree.command(name="ban", description="Admin-command")
-@app_commands.checks.has_parmissions(moderte_members=True)
+@app_commands.checks.has_permissions(moderate_members=True)
 async def ban_command(interaction:discord.Interaction, member: discord.Member, 内容: str, time: str):
   channel = client.get_channel(1123538576525770782)
 
   await interaction.response.defer(ephemeral=True)
 
-  embed=discord.Embed(title=f"メンバーがBANされました", color=F30100)
-  embed.set_author(name=f"<@{(member)}>", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
-  embed.add_field(name="内容",value=f"{(内容)}",inline=False)
+  embed=discord.Embed(title=f"メンバーがBANされました", color=0x00ff59)
+  embed.set_author(name=f"{(member)}", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.add_field(name="BAN内容",value=f"{(内容)}",inline=False)
   await interaction.followup.send("完了",ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | {(time)} BAN")
   await interaction.channel.send(embed=embed)
