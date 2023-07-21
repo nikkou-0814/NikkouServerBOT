@@ -420,7 +420,7 @@ async def ban_command(interaction:discord.Interaction, member: discord.Member, �
 
   await interaction.response.defer(ephemeral=True)
 
-  embed=discord.Embed(title=f"メンバーがBANされました", color=0x00ff59)
+  embed=discord.Embed(title=f"@<{(member)}> がBANされました", color=0x00ff59)
   embed.set_author(name=f"<@{username.id}>", icon_url=f"{client.user.avatar}")
   embed.add_field(name="BAN内容",value=f"{(内容)}",inline=False)
   await interaction.followup.send("完了",ephemeral=True)
