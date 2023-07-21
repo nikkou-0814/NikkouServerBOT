@@ -409,22 +409,5 @@ async def test_command(interaction:discord.Interaction):
 async def clean_command(interaction: discord.Interaction, how:int):
   await interaction.response.defer()
   deleted = await interaction.channel.purge(limit=how+1)
-
-#------------------------------------------------------------------ BAN機能 ------------------------------------------------------------------
-
-@tree.command(name="ban", description="Admin-command")
-@app_commands.checks.has_permissions(moderate_members=True)
-async def ban_command(interaction:discord.Interaction, memberid: str, 内容: str, time: str):
-  channel = client.get_channel(1123538576525770782)
-
-  await interaction.response.defer(ephemeral=True)
-
-  embed=discord.Embed(title=f"メンバーがBANされました", color=0x00ff59)
-  embed.set_author(name=f"以下がBANされた詳細です。", icon_url=f"{client.user.avatar}")
-  embed.set_author(name=f"ユーザー",value=f"@<{(memberid)}>")
-  embed.add_field(name="内容",value=f"{(内容)}")
-  await interaction.followup.send("完了",ephemeral=True)
-  embed.set_footer(text=f"version {(VER)} | {(time)} BAN")
-  await channel.send(embed=embed)
   
 client.run(os.getenv('TOKEN'))
