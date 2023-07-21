@@ -182,7 +182,7 @@ async def on_voice_state_update(member, before, after):
 @tree.command(name="ヘルプ",description="このBOTのコマンドなどを表示します。")
 async def ヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="ヘルプ機能", description="このBOTのコマンドなどを表示します。", color=0xff00ff)
-  embed.set_author(name="NikkouServerBOT ヘルプ", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT ヘルプ", icon_url=f"{client.user.avatar}")
   embed.add_field(name="/ヘルプ", value="BOTのコマンドを表示する。", inline=True)
   embed.add_field(name="/おみくじ", value="今日の運勢は〜", inline=True)
   embed.add_field(name="/コマンド一覧", value="コマンド一覧を説明無しで一覧表示する。", inline=False)
@@ -200,7 +200,7 @@ async def ヘルプ_command(interaction: discord.Interaction):
 @tree.command(name="コマンド一覧",description="コマンド一覧を説明無しで表示する。")
 async def コマンド一覧_command(interaction: discord.Interaction):
   embed=discord.Embed(title="コマンド一覧", description="コマンド一覧を表示します。", color=0x00ffff)
-  embed.set_author(name="NikkouServerBOT コマンド一覧", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT コマンド一覧", icon_url=f"{client.user.avatar}")
   embed.add_field(name="/ヘルプ", value="", inline=False)
   embed.add_field(name="/おみくじ", value="", inline=False)
   embed.add_field(name="/コマンド一覧", value="", inline=False)
@@ -218,7 +218,7 @@ async def コマンド一覧_command(interaction: discord.Interaction):
 @tree.command(name="レポートヘルプ",description="レポートの仕方がわからないときに使ってね！")
 async def レポートヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="レポートする方法", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT レポートヘルプ", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT レポートヘルプ", icon_url=f"{client.user.avatar}")
   embed.add_field(name="レポート対象が人の場合", value="", inline=False)
   embed.add_field(name="手順1", value="通報内容がわかるスクリーンショットを用意できるなら用意します。", inline=False)
   embed.add_field(name="手順2", value="日光サーバーのdiscord内で、/ユーザーレポート コマンドを使用します。", inline=False)
@@ -257,7 +257,7 @@ async def ユーザーレポート_command(interaction: discord.Interaction,違�
   await interaction.response.defer(ephemeral=True)
 
   embed = discord.Embed(title="ユーザーレポート", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT user-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT user-report", icon_url=f"{client.user.avatar}")
   embed.add_field(name="送信者", value=送信したユーザー, inline=False)
   embed.add_field(name="違反者", value=違反者, inline=False)
   embed.add_field(name="通報内容", value=本文, inline=False)
@@ -289,7 +289,7 @@ async def バグレポート_command(
   await interaction.response.defer(ephemeral=True)
 
   embed = discord.Embed(title="プレーヤーレポート", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT bug-report", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT bug-report", icon_url=f"{client.user.avatar}")
   embed.add_field(name="送信者", value=送信したユーザー, inline=False)
   embed.add_field(name="バグの内容", value=本文, inline=False)
 
@@ -318,7 +318,7 @@ async def setup_command(interaction: discord.Interaction):
 @tree.command(name="ミュージックヘルプ",description="ミュージック機能がわからないときに使ってね。")
 async def ミュージックヘルプ_command(interaction: discord.Interaction):
   embed=discord.Embed(title="ミュージック機能を使う方法", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT ミュージックヘルプ", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT ミュージックヘルプ", icon_url=f"{client.user.avatar}")
   embed.add_field(name="ボイスチャットに参加させる", value="n!summon または n!sm", inline=True)
   embed.add_field(name="ボイスチャットから抜けさせる", value="n!disconnect または n!dc", inline=True)
   embed.add_field(name="現在再生中の曲の詳細を表示", value="n!np", inline=True)
@@ -342,7 +342,7 @@ async def サイコロ_command(interaction: discord.Interaction):
 @tree.command(name="リンク集",description="NikkouServerServiceのリンク集を表示します。")
 async def リンク集_commnad(interaction: discord.Interaction):
   embed=discord.Embed(title="リンク集", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT リンク集", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT リンク集", icon_url=f"{client.user.avatar}")
   embed.add_field(name="Webサイト", value="https://ssnikkou.com")
   embed.add_field(name="マイクラサーバーWebサイト", value="https://mcnikkou.com")
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
@@ -360,7 +360,7 @@ async def announce_command(
   await interaction.response.defer(ephemeral=True)
 
   embed=discord.Embed(title=f"[{(タイトル)}]", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT アナウンス", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT アナウンス", icon_url=f"{client.user.avatar}")
   embed.add_field(name=f"{(テキスト)}", value="", inline=False)
 
   if 画像 == None:
@@ -382,7 +382,7 @@ async def newembed_command(
   await interaction.response.defer(ephemeral=True)
 
   embed=discord.Embed(title=f"{(タイトル)}", color=0x00ff59)
-  embed.set_author(name="NikkouServerBOT newembed", icon_url="https://img.tokuzouserver.net/ed06513f-20f9-432c-90c4-59c070971f6c.png")
+  embed.set_author(name="NikkouServerBOT newembed", icon_url=f"{client.user.avatar}")
   embed.add_field(name=f"{(name)}",value=f"{(value)}",inline=False)
 
   if 画像 == None:
@@ -414,13 +414,14 @@ async def clean_command(interaction: discord.Interaction, how:int):
 
 @tree.command(name="ban", description="Admin-command")
 @app_commands.checks.has_permissions(moderate_members=True)
-async def ban_command(interaction:discord.Interaction, member: discord.Member, 内容: str, time: str):
+async def ban_command(interaction:discord.Interaction, memberid: str, 内容: str, time: str):
   channel = client.get_channel(1123538576525770782)
 
   await interaction.response.defer(ephemeral=True)
 
-  embed=discord.Embed(title=f"{(member)}がBANされました", color=0x00ff59)
+  embed=discord.Embed(title=f"メンバーがBANされました", color=0x00ff59)
   embed.set_author(name=f"以下がBANされた詳細です。", icon_url=f"{client.user.avatar}")
+  embed.set_author(name=f"ユーザー",value=f"@<{(memberid)}>")
   embed.add_field(name="内容",value=f"{(内容)}")
   await interaction.followup.send("完了",ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | {(time)} BAN")
