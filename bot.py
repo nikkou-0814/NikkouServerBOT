@@ -416,15 +416,14 @@ async def clean_command(interaction: discord.Interaction, how:int):
 @app_commands.checks.has_permissions(moderate_members=True)
 async def ban_command(interaction:discord.Interaction, member: discord.Member, 内容: str, time: str):
   channel = client.get_channel(1123538576525770782)
-  count = update_user_count(username.id)
 
   await interaction.response.defer(ephemeral=True)
 
-  embed=discord.Embed(title=f"@<{(member)}> がBANされました", color=0x00ff59)
-  embed.set_author(name=f"<@{username.id}>", icon_url=f"{client.user.avatar}")
-  embed.add_field(name="BAN内容",value=f"{(内容)}",inline=False)
+  embed=discord.Embed(title=f"{(member)}がBANされました", color=0x00ff59)
+  embed.set_author(name=f"以下がBANされた詳細です。", icon_url=f"{client.user.avatar}")
+  embed.add_field(name="内容",value=f"{(内容)}")
   await interaction.followup.send("完了",ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | {(time)} BAN")
-  await interaction.channel.send(embed=embed)
+  await channel.send(embed=embed)
   
 client.run(os.getenv('TOKEN'))
