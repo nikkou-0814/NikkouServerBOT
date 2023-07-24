@@ -15,7 +15,7 @@ import romkan
 
 load_dotenv()
 
-VER = "1.2.6"
+VER = "1.2.7"
 
 kks = pykakasi.kakasi()
 intents = discord.Intents.default()
