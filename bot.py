@@ -30,6 +30,10 @@ async def on_ready():
   print("Bot起動完了！")
   await tree.sync()
   await client.change_presence(activity=discord.Game(name=f"BOTの説明は/help | v{(VER)}"))
+  async def on_message(message):
+    # プライベートメッセージの場合のみスラッシュコマンドを無効にする
+    if isinstance(message.channel, discord.DMChannel):
+        return
 
 #------------------------------------------------------------------ 禁止ワード削除 ------------------------------------------------------------------
 
