@@ -313,7 +313,7 @@ async def bugreport_command(
 @app_commands.default_permissions(administrator=True)
 async def setup_command(interaction: discord.Interaction):
   allowed_mentions = discord.AllowedMentions(everyone = True)
-  await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこちらをしてください！\n\n> **ステップ.1 | 認証しよう！**\n\nhttps://discord.com/channels/1010856148083150928/1107107150381187123 で認証ボタンをクリック！。\n\n> **ステップ.2 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.3 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.4 | その他**\n\n このBOTの使い方は /ヘルプ で表示できます！（このBOTのメッセージは、「/おみくじ」と「/サイコロ」以外すべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n @everyone \n\n version {(VER)} | made by aomona and nikkou_0814 ",ephemeral=False, allowed_mentions = allowed_mentions)
+  await interaction.response.send_message(f"> **NikkouServerServiceへようこそ！**\n\nサーバーを運用する前に最初にこちらをしてください！\n\n> **ステップ.1 | ルール確認**\n\nhttps://discord.com/channels/1010856148083150928/1010859953122189382 でルールを見ましょう。\n\n> **ステップ.2 | ロールカスタム**\n\nhttps://discord.com/channels/1010856148083150928/1057312947443077130 でロールを自分好みにカスタマイズしよう！\n\n> **ステップ.3 | その他**\n\n このBOTの使い方は /ヘルプ で表示できます！（このBOTのメッセージは、「/おみくじ」と「/サイコロ」以外すべて__**みんなには表示されない**__から安心して使ってね！）\n\nあとはルールを守りながらご自由にどうぞ！！\n\n @everyone \n\n version {(VER)} | made by tokuzou aomona and nikkou_0814 ",ephemeral=False, allowed_mentions = allowed_mentions)
 
 #------------------------------------------------------------------ ミュージックヘルプ機能 ------------------------------------------------------------------
 
