@@ -306,7 +306,19 @@ async def bugreport_command(
   await interaction.followup.send("送信しました!協力ありがとう!", ephemeral=True)
   embed.set_footer(text=f"version {(VER)} | made by nikkou_0814 and aomona")
   await channel.send(embed=embed)
+#------------------------------------------------------------------ テスト機能 ------------------------------------------------------------------
+@bot.event
+async def on_voice_state_update(member, before, after):
+    # 特定のユーザーのIDを指定
+    target_user_id = 1032489535457734697
 
+    if member.id == target_user_id:
+        if before.mute and not after.mute:  # サーバーミュートが解除された場合
+            await member.edit(mute=False)
+            print(f'Unmuted {member.name} in the server.')
+        if before.self_mute and not after.self_mute:  # サーバースピーカーミュートが解除された場合
+            await member.edit(self_mute=False)
+            print(f'Unmuted {member.name} in the voice channel.')
 #------------------------------------------------------------------ setup機能 ------------------------------------------------------------------
 
 @tree.command(name="setup",description="Admin-Command")
