@@ -67,7 +67,7 @@ async def cloud(interaction: discord.Interaction,word: str):
     if interaction.guild.id != server_id:
         await interaction.response.send_message('このコマンドは許可されていません。')
     add_word_to_blacklist(word)
-    await interaction.response.send_message(f'{word} という禁止ワードを追加しました！')
+    await interaction.response.send_message(f'「{word}」 という禁止ワードを追加しました！')
 #------------------------------------------------------------------ 自動削除系関数 ------------------------------------------------------------------
 #--ユーザー情報--
 
