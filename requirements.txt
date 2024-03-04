@@ -1,4 +1,8 @@
-discord.py==2.2.3
+discord.py==2.3.2
+gTTS==2.5.1
+openai==1.13.3
+pydub==0.25.1
 pykakasi==2.2.1
-python-dotenv==1.0.0
+python-dotenv==1.0.1
+Requests==2.31.0
 romkan==0.2.1
