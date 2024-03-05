@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "nikkouserverbot"
+version = "0.1.0"
+description = "Discord Bot for NikkouServer"
+authors = ["nikkouservers"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+discord-py = "2.3.2"
+gtts = "2.5.1"
+openai = "1.13.3"
+pydub = "0.25.1"
+pykakasi = "2.2.1"
+python-dotenv = "1.0.1"
+requests = "2.31.0"
+romkan = "0.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
