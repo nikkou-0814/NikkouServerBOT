@@ -10,7 +10,7 @@
 GitHub からリポジトリをクローンします。
 
 ```bash
-git clone https://github.com/nikkou-0814/NikkouServerBOT
+git clone https://github.com/nikkou-0814/NikkouServerBOT.git
 ```
 
 ### 環境変数
