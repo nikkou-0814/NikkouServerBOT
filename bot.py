@@ -13,6 +13,7 @@ import json
 import re
 import asyncio
 import requests
+import sys
 import time
 from gtts import gTTS
 from io import BytesIO
@@ -30,6 +31,9 @@ import romkan
 #その他の関数
 load_dotenv()
 
+if os.getenv('TOKEN') is None:
+   print("Discordトークンが設定されていません。.envを確認してください。")
+   sys.exit(1)
 
 connected_channels = {}
 
@@ -162,7 +166,7 @@ async def cloud(interaction: discord.Interaction,word: str):
    server_id = 1206276013076774924  # 指定するServer ID
    if interaction.guild.id != server_id:
        await interaction.response.send_message('このコマンドは許可されてないよ')
-   add_word_to_blacklist(word)
+   add_word_to_blocklist(word)
    await interaction.response.send_message(f'禁止ワードを追加しました！')
 
 
@@ -175,8 +179,8 @@ def toKanji(s):
 
 
 #--リスト追加--
-def add_word_to_blacklist(word):
-   json_file_path = 'blacklist.json'
+def add_word_to_blocklist(word):
+   json_file_path = 'blocklist.json'
 
 
    # 辞書の読み込み
@@ -195,7 +199,7 @@ def add_word_to_blacklist(word):
 
 #--テキスト検査--
 def check_text(text):
-   json_file = open('blacklist.json', 'r')
+   json_file = open('blocklist.json', 'r')
    word_list = json.load(json_file)
 #    print(word_list)
    for word in word_list:
